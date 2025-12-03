@@ -1,2 +1,26 @@
 wireguard_method: systemd-networkd
 wireguard_interfaces: {}
+  # Each key is the interface name
+  #
+  # wg0:
+  #   description: Optional description
+  #   PrivateKey: ''
+  #   ListenPort: 51820
+  #   Network:
+  #     # Any valid option for the [NETWORK] section.
+  #     # See man systemd.network for valid options.
+  #     Address: 1.2.3.4/32  # This is the IP of the interface
+  #     IPMasquerade: both
+  #
+  #   peers:
+  #     # List of Wireguard peers
+  #     - description: Optional description inserted as a comment
+  #       PublicKey: ''
+  #       PresharedKey: ''  # Optional
+  #       AllowedIPs: []
+  #
+  #   routes:
+  #     # Each item is an entry in the [ROUTE] section.
+  #     # See man systemd.network for valid options.
+  #     - Destiation: 192.168.0.0/24
+  #       Scope: link
