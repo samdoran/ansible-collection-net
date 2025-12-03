@@ -1,9 +1,27 @@
-- name: Install wireguard
-  package:
-    name: wireguard-tools
-    state: latest
+- name: Include distribution specific variables
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_facts.os_family }}-{{ ansible_facts.distribution_major_version }}.yml"
+        - "{{ ansible_facts.distribution }}-{{ ansible_facts.distribution_version }}.yml"
+        - "{{ ansible_facts.distribution }}.yml"
+        - "{{ ansible_facts.system_vendor }}.yml"
+        - "{{ ansible_facts.os_family }}.yml"
+      paths:
+        - vars
   tags:
     - wireguard
+    - always
+
+- name: Install required packages
+  action: "{{ ansible_facts.pkg_mgr }}"
+  args:
+    name: "{{ _wireguard_packages }}"
+    state: present
+  tags:
+    - wireguard
+    - packages
 
 - name: Allow ipv4 routing
   sysctl:
