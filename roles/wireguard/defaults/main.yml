@@ -1,1 +1,2 @@
+wireguard_method: systemd-networkd
 wireguard_interfaces: {}

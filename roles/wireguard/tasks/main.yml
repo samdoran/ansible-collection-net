@@ -30,4 +30,6 @@
   tags:
     - wireguard
 
-- import_tasks: systemd_networkd.yml
+- include_tasks: "{{ wireguard_method }}.yml"
+  tags:
+    - always
