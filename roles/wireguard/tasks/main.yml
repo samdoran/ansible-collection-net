@@ -24,7 +24,7 @@
     - packages
 
 - name: Allow ipv4 routing
-  sysctl:
+  ansible.posix.sysctl:
     name: net.ipv4.ip_forward
     value: 1
   tags:
