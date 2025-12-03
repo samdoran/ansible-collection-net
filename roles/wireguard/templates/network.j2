@@ -1,0 +1,15 @@
+[Match]
+Name={{ item.key}}
+
+[Network]
+{% for key, value in item.value.Network.items() %}
+{{key}}={{ value }}
+{% endfor %}
+
+{% for route in item.value.routes %}
+[Route]
+{% for key, value in route.items() %}
+{{ key }}={{ value }}
+{% endfor %}
+
+{% endfor %}

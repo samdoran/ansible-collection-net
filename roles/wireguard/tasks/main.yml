@@ -1,0 +1,15 @@
+- name: Install wireguard
+  package:
+    name: wireguard-tools
+    state: latest
+  tags:
+    - wireguard
+
+- name: Allow ipv4 routing
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+  tags:
+    - wireguard
+
+- import_tasks: systemd_networkd.yml
